@@ -13,7 +13,7 @@ public class HW1_Selenide {
     @BeforeAll
     static void beforeAll() {
         Configuration.pageLoadStrategy = "eager";
-        Configuration.holdBrowserOpen = true;
+        Configuration.holdBrowserOpen = false;
         Configuration.browserSize = "1500x980";
     }
 
