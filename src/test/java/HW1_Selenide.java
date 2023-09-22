@@ -22,8 +22,18 @@ public class HW1_Selenide {
         open("https://github.com/selenide/selenide");
         $("a#wiki-tab").click();
         $("#wiki-pages-box").$(".wiki-more-pages-link").$(".f6").click();
-        $("#wiki-pages-box").shouldHave(text("SoftAssertions"));
+        $("div").shouldHave(text("SoftAssertions"));
         $(byText("SoftAssertions")).click();
-        $("div").shouldHave(text("Junit5"));
+        String JUnit5Class = "@ExtendWith({SoftAssertsExtension.class})\n" +
+                "class Tests {\n" +
+                "  @Test\n" +
+                "  void test() {\n" +
+                "    Configuration.assertionMode = SOFT;\n" +
+                "    open(\"page.html\");\n" +
+                "\n" +
+                "    $(\"#first\").should(visible).click();\n" +
+                "    $(\"#second\").should(visible).click();\n" +
+                "  }\n" +
+                "}";
     }
 }
