@@ -1,28 +1,25 @@
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Selectors.*;
+import static com.codeborne.selenide.Selenide.*;
+
 
 public class HW2_Selenide {
     @BeforeAll
     static void beforeAll() {
         Configuration.pageLoadStrategy = "eager";
-        Configuration.holdBrowserOpen = false;
         Configuration.browserSize = "1500x980";
     }
 
-    private Object Condition;
-
     @Test
-    void enterpize() {
+    void hoverTest() {
         open("https://github.com");
-        $(byText("Solutions")).hover();
-        $(byText("Enterprise")).click();
-        $("h1 Build like the best");
+        $(".header-menu-wrapper").$(byText("Solutions")).hover();
+        $(".header-menu-wrapper").$(byText("Enterprise")).click();
+        $(withText("Build like the best")).shouldBe(visible);
+
     }
 }
